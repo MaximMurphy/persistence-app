@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/UI/Header";
+import Footer from "./_components/UI/Footer";
 
 // If loading a variable font, you don't need to specify the font weight
 const sapceGrotesk = Space_Grotesk({
@@ -26,6 +27,7 @@ export default function RootLayout({
       >
         <Header />
         <div className="flex-grow">{children}</div>
+        <Footer />
       </body>
     </html>
   );
