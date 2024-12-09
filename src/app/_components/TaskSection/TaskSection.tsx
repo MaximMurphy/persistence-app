@@ -22,7 +22,7 @@ const persistentList = [
 export default function TaskSection() {
   return (
     <div className="w-full h-full flex justify-center items-center border-2 border-browser rounded-md">
-      <PersistentSection tasks={persistentList} />
+      <PersistentSection taskList={persistentList} />
       <DailySection />
     </div>
   );
