@@ -9,12 +9,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        browser: "var(--browser)",
-        cream: "var(--cream)",
-        accentBlue: "var(--accent-blue)",
-        accentPurple: "var(--accent-purple)",
-        accentPink: "var(--accent-pink)",
+        background: "#111824",
+        browser: "#2f333b",
+        cream: "#f8f2ea",
+        accentBlue: "#112179",
+        accentPurple: "#47155b",
+        accentPink: "#d682c1",
       },
     },
   },
