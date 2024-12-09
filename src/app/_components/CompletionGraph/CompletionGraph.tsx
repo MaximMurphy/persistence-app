@@ -19,14 +19,16 @@ export default function CompletionGraph({ year }: { year: number }) {
   });
 
   return (
-    <div className="w-fit h-fit grid grid-rows-7 grid-flow-col gap-[4px] border-2 border-browser p-4 rounded-md">
-      {daysInYear.map((day, index) => (
-        <div
-          key={day}
-          className="w-[12px] h-2 bg-accentPurple hover:bg-accentPink"
-          title={`${dates[index].month} ${dates[index].dayNumber}, ${dates[index].year}`}
-        ></div>
-      ))}
+    <div className="w-full flex items-center justify-center">
+      <div className="w-fit h-fit grid grid-rows-7 grid-flow-col gap-[4px] border-2 border-browser p-4 rounded-md overflow-scroll">
+        {daysInYear.map((day, index) => (
+          <div
+            key={day}
+            className="w-[12px] h-2 bg-accentPurple hover:bg-accentPink"
+            title={`${dates[index].month} ${dates[index].dayNumber}, ${dates[index].year}`}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 }

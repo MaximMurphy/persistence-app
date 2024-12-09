@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sapceGrotesk.className} antialiased h-screen flex flex-col`}
+        className={`${sapceGrotesk.className} antialiased min-h-screen lg:h-screen w-full flex flex-col`}
       >
         <Header />
         <div className="flex-grow">{children}</div>

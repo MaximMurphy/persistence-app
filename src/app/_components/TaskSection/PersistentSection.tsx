@@ -31,7 +31,7 @@ export default function PersistentSection({ taskList }: Props) {
   };
 
   return (
-    <div className="h-full w-full flex flex-col justify-start px-4 py-2 gap-4 border-r border-browser">
+    <div className="h-full w-full flex flex-col justify-start px-4 py-2 gap-4 border-r border-browser overflow-scroll no-scrollbar">
       <p className="underline">Persistent</p>
       <div className="flex flex-col gap-2">
         {tasks.map((task) => (
@@ -45,7 +45,7 @@ export default function PersistentSection({ taskList }: Props) {
               <span
                 className={clsx(
                   "flex items-center justify-center relative w-6 h-6 bg-background brightness-75 rounded-sm hover:brightness-[0.65]",
-                  task.isComplete && "bg-accentPink"
+                  task.isComplete && "bg-accentBlue"
                 )}
               >
                 {task.isComplete ? "✦" : ""}

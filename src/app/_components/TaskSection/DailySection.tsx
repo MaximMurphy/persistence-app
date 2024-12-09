@@ -1,6 +1,6 @@
 export default function DailySection() {
   return (
-    <div className="h-full w-full flex flex-col justify-start px-4 py-2 gap-4 border-l border-browser">
+    <div className="h-full w-full flex flex-col justify-start px-4 py-2 gap-4 border-l border-browser overflow-scroll">
       <p className="underline">Daily</p>
       <form className="flex gap-4 items-center">
         <input
