@@ -1,5 +1,5 @@
 import Image from "next/image";
-import word from "../../../../public/word.svg";
+import word from "@/public/word.svg";
 
 export default function Footer() {
   return (

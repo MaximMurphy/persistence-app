@@ -1,5 +1,5 @@
 import Image from "next/image";
-import letters from "../../../../public/letters.svg";
+import letters from "@/public/letters.svg";
 
 export default function Header() {
   return (

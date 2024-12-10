@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import Header from "./_Components/UI/Header";
-import Footer from "./_Components/UI/Footer";
+import Header from "./components/ui/Header";
+import Footer from "./components/ui/Footer";
 
 // If loading a variable font, you don't need to specify the font weight
 const sapceGrotesk = Space_Grotesk({

@@ -1,6 +1,6 @@
-import CompletionGraph from "./_Components/CompletionGraph/CompletionGraph";
-import { getOrdinalSuffix } from "./_Components/CompletionGraph/CompletionGraph";
-import TaskSection from "./_Components/TaskSection/TaskSection";
+import CompletionGraph from "./components/CompletionGraph/CompletionGraph";
+import { getOrdinalSuffix } from "./components/CompletionGraph/CompletionGraph";
+import TaskSection from "./components/TaskSection/TaskSection";
 import MoonPhase from "./api/MoonPhase";
 
 export default function Home() {
