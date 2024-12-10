@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 
 export default function MoonPhase() {
-  const [data, setData] = useState(null);
   const [moonPhase, setMoonPhase] = useState(null);
   let moonPhaseEmoji = "";
 
@@ -20,7 +19,6 @@ export default function MoonPhase() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setData(data);
         setMoonPhase(data.currentConditions.moonphase);
       } catch (error) {
         console.log((error as Error).message);
@@ -29,7 +27,7 @@ export default function MoonPhase() {
     fetchData();
   }, []);
 
-  console.log(data);
+  //console.log(data);
 
   if (moonPhase) {
     if (moonPhase >= 0 && moonPhase < 0.25) {
