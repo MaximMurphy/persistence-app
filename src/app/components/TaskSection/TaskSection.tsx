@@ -65,8 +65,14 @@ export default function TaskSection() {
         <DailySection taskList={dailyList} />
       </div>
 
-      <div className="w-full flex justify-end">
+      <div className="w-full flex flex-col items-end gap-4">
         <NewTaskInput />
+        <button
+          type="submit"
+          className="w-24 p-2 bg-background brightness-90 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue"
+        >
+          <span className="opacity-50">End Day</span>
+        </button>
       </div>
     </div>
   );
@@ -84,7 +90,7 @@ const NewTaskInput = () => {
         type="submit"
         className="w-12 p-2 bg-background brightness-90 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue"
       >
-        +
+        <span className="opacity-50">+</span>
       </button>
     </form>
   );
