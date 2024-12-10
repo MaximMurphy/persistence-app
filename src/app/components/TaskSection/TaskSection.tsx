@@ -59,8 +59,8 @@ const dailyList = [
 
 export default function TaskSection() {
   return (
-    <div className="w-full h-full flex flex-col gap-2">
-      <div className="w-full h-full lg:h-72 flex flex-col lg:flex-row justify-center items-center border-2 border-browser rounded-md overflow-scroll">
+    <div className="w-full h-full flex flex-col gap-4 lg:gap-2">
+      <div className="w-full h-full lg:h-72 flex flex-col lg:flex-row justify-center items-center border lg:border-2 border-browser rounded-md overflow-scroll">
         <PersistentSection taskList={persistentList} />
         <DailySection taskList={dailyList} />
       </div>
@@ -74,7 +74,7 @@ export default function TaskSection() {
 
 const NewTaskInput = () => {
   return (
-    <form className="w-1/2 flex gap-2 items-center">
+    <form className="w-full lg:w-1/2 flex gap-2 items-center">
       <input
         type="text"
         placeholder="New Task"

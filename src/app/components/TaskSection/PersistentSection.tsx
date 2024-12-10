@@ -22,11 +22,16 @@ export default function PersistentSection({ taskList }: Props) {
   };
 
   return (
-    <div className="h-full w-full flex flex-col justify-start px-4 py-2 gap-4 border-r border-browser overflow-scroll no-scrollbar">
+    <div className="bg-gradient-to-b lg:bg-gradient-to-br from-background via-background to-accentPurple/30 h-full w-full flex flex-col justify-start px-4 py-4 lg:py-2 gap-4 border-b lg:border-b-0 lg:border-r border-browser overflow-scroll no-scrollbar">
       <p className="underline">Persistent</p>
       <div className="flex flex-col gap-2">
         {tasks.map((task) => (
-          <Task key={task.id} task={task} handleChecked={handleChecked} />
+          <Task
+            key={task.id}
+            task={task}
+            persistent
+            handleChecked={handleChecked}
+          />
         ))}
       </div>
     </div>
