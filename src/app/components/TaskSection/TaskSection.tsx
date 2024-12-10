@@ -73,8 +73,8 @@ export default function TaskSection() {
         <DailySection taskList={taskList} updateTaskList={updateTaskList} />
       </div>
 
-      <div className="w-full flex flex-col items-end gap-4">
-        <NewTaskInput />
+      <div className="w-full flex flex-col items-end gap-2">
+        <NewTaskInput taskList={taskList} setTaskList={setTaskList} />
         <button
           type="submit"
           className="w-24 p-2 bg-background brightness-90 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue"
@@ -86,11 +86,41 @@ export default function TaskSection() {
   );
 }
 
-const NewTaskInput = () => {
+const NewTaskInput = ({
+  taskList,
+  setTaskList,
+}: {
+  taskList: Task[];
+  setTaskList: (newTaskList: Task[]) => void;
+}) => {
+  const [newTaskName, setNewTaskName] = useState("");
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (newTaskName) {
+      const newTaskList = [
+        ...taskList,
+        {
+          id: (taskList.length + 1).toString(),
+          name: newTaskName,
+          isComplete: false,
+          isPersistent: false,
+        },
+      ];
+      setTaskList(newTaskList);
+      setNewTaskName("");
+    }
+  };
+
   return (
-    <form className="w-full lg:w-1/2 flex gap-2 items-center">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full lg:w-1/2 flex gap-2 items-center"
+    >
       <input
         type="text"
+        value={newTaskName}
+        onChange={(event) => setNewTaskName(event.target.value)}
         placeholder="New Task"
         className="w-full p-2 bg-background brightness-90 border border-browser rounded-md focus:outline-none focus:ring-2 focus:ring-accentBlue"
       />

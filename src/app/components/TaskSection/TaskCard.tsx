@@ -29,7 +29,8 @@ export default function TaskCard({
       <div
         className={clsx(
           "w-full flex justify-between px-4 py-2 bg-background brightness-90 border border-browser rounded-md",
-          task.isComplete && "bg-background/10"
+          task.isComplete &&
+            "bg-gradient-to-br from-background to-accentPurple/60"
         )}
       >
         <p className={clsx(task.isComplete ? "line-through" : "")}>
@@ -40,7 +41,7 @@ export default function TaskCard({
           <button
             onClick={() => editTask()}
             className={clsx(
-              "flex items-center justify-center relative w-6 h-6  bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 over:outline-none hover:ring-2 hover:ring-accentBlue"
+              "flex items-center justify-center relative w-6 h-6  bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentBlue"
             )}
           >
             <Icon icon="lucide:edit" width="12" height="12" />
@@ -48,7 +49,7 @@ export default function TaskCard({
           <button
             onClick={() => togglePersistence(task)}
             className={clsx(
-              "flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100"
+              "flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentBlue"
             )}
           >
             {task.isPersistent ? "✦" : "✧"}

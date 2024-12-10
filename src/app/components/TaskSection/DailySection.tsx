@@ -18,13 +18,13 @@ export default function DailySection({
   }, [taskList]);
 
   const toggleComplete = (id: string) => {
-    const newTasks = tasks.map((task) => {
+    const newTaskList = taskList.map((task) => {
       if (task.id === id) {
         return { ...task, isComplete: !task.isComplete };
       }
       return task;
     });
-    setTasks(newTasks);
+    updateTaskList(newTaskList);
   };
 
   const togglePersistence = (task: Task) => {
@@ -38,10 +38,9 @@ export default function DailySection({
   };
 
   return (
-    <div className="bg-gradient-to-t from-background via-background to-accentPurple/30 h-full w-full flex flex-col justify-start px-4 py-4 lg:py-2 gap-4 lg:border-l border-browser overflow-scroll no-scrollbar">
+    <div className="bg-background h-full w-full flex flex-col justify-start px-4 py-4 lg:py-2 gap-4 lg:border-l border-browser overflow-scroll no-scrollbar">
       <div className="flex justify-between items-end">
         <p className="underline">Daily</p>
-        <p className="text-xs opacity-50 underline">Persist?</p>
       </div>
       <div className="flex flex-col gap-2">
         {tasks.map((task) => (
@@ -52,6 +51,17 @@ export default function DailySection({
             togglePersistence={togglePersistence}
           />
         ))}
+      </div>
+
+      <div className="w-full h-fit flex items-center justify-end text-xs px-4 text-cream/50">
+        <div className="group w-fit flex items-center gap-4">
+          <p className="hidden group-hover:flex underline">
+            Pressing ✧ will persist your task for the future.
+          </p>
+          <p className="peer bg-background brightness-90 w-[3.5rem] h-6 flex items-center justify-center text-center border border-browser rounded-sm cursor-help hover:outline-none hover:ring-2 hover:ring-accentBlue">
+            ✧?
+          </p>
+        </div>
       </div>
     </div>
   );
