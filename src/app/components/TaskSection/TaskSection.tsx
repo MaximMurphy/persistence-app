@@ -64,7 +64,7 @@ export default function TaskSection() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 lg:gap-2">
+    <div className="w-full h-full flex flex-col gap-4 lg:gap-2 mb-12 lg:mb-0">
       <div className="w-full h-full lg:h-72 flex flex-col lg:flex-row justify-center items-center border lg:border-2 border-browser rounded-md overflow-scroll">
         <PersistentSection
           taskList={taskList}
@@ -73,14 +73,8 @@ export default function TaskSection() {
         <DailySection taskList={taskList} updateTaskList={updateTaskList} />
       </div>
 
-      <div className="w-full flex flex-col items-end gap-2">
+      <div className="w-full flex justify-end">
         <NewTaskInput taskList={taskList} setTaskList={setTaskList} />
-        <button
-          type="submit"
-          className="w-24 p-2 bg-background brightness-90 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue"
-        >
-          <span className="opacity-50">End Day</span>
-        </button>
       </div>
     </div>
   );
@@ -122,11 +116,11 @@ const NewTaskInput = ({
         value={newTaskName}
         onChange={(event) => setNewTaskName(event.target.value)}
         placeholder="New Task"
-        className="w-full p-2 bg-background brightness-90 border border-browser rounded-md focus:outline-none focus:ring-2 focus:ring-accentBlue"
+        className="w-full px-4 py-2 bg-background brightness-90 border border-browser rounded-md focus:outline-none focus:ring-2 focus:ring-accentBlue transition ease-in-out duration-200"
       />
       <button
         type="submit"
-        className="w-12 p-2 bg-background brightness-90 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue"
+        className="w-12 p-2 bg-background brightness-90 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200"
       >
         <span className="opacity-50">+</span>
       </button>

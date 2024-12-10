@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 export default function CompletionGraph({ year }: { year: number }) {
   const daysInYear: number[] =
     year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
@@ -9,12 +11,14 @@ export default function CompletionGraph({ year }: { year: number }) {
     const dayOfWeek = date.toLocaleString("default", { weekday: "long" });
     const dayNumber = getOrdinalSuffix(date.getDate());
     const month = date.toLocaleString("default", { month: "long" });
+    const completionPercentage = Math.random();
 
     return {
       dayOfWeek,
       dayNumber,
       month,
       year,
+      completionPercentage,
     };
   });
 
@@ -24,8 +28,33 @@ export default function CompletionGraph({ year }: { year: number }) {
         {daysInYear.map((day, index) => (
           <div
             key={day}
-            className="w-[12px] h-2 bg-accentPurple hover:bg-accentPink"
-            title={`${dates[index].month} ${dates[index].dayNumber}, ${dates[index].year}`}
+            className={clsx(
+              "w-[12px] h-2 bg-browser hover:scale-150 hover:border hover:border-accentPink",
+              dates[index].completionPercentage <= 0.1
+                ? "bg-accentPurple/10"
+                : dates[index].completionPercentage <= 0.2
+                ? "bg-accentPurple/20"
+                : dates[index].completionPercentage <= 0.3
+                ? "bg-accentPurple/30"
+                : dates[index].completionPercentage <= 0.4
+                ? "bg-accentPurple/40"
+                : dates[index].completionPercentage <= 0.5
+                ? "bg-accentPurple/50"
+                : dates[index].completionPercentage <= 0.6
+                ? "bg-accentPurple/60"
+                : dates[index].completionPercentage <= 0.7
+                ? "bg-accentPurple/70"
+                : dates[index].completionPercentage <= 0.8
+                ? "bg-accentPurple/80"
+                : dates[index].completionPercentage <= 0.9
+                ? "bg-accentPurple/90"
+                : "bg-accentPurple/100"
+            )}
+            title={`${dates[index].month} ${dates[index].dayNumber}, ${
+              dates[index].year
+            } Completed: ${(dates[index].completionPercentage * 100).toFixed(
+              0
+            )}%`}
           ></div>
         ))}
       </div>
