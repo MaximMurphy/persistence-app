@@ -11,7 +11,7 @@ const sapceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Persistence",
+  title: "Persistence - A Productivity App",
   description: "Complete your daily tasks with Persistence",
 };
 
