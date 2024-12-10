@@ -1,6 +1,7 @@
 import CompletionGraph from "./_Components/CompletionGraph/CompletionGraph";
 import { getOrdinalSuffix } from "./_Components/CompletionGraph/CompletionGraph";
 import TaskSection from "./_Components/TaskSection/TaskSection";
+import MoonPhase from "./api/MoonPhase";
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -21,7 +22,10 @@ export default function Home() {
 const DateDisplay = ({ year }: { year: number }) => {
   return (
     <div className="w-full flex text-lg lg:text-2xl justify-between">
-      <p>{new Date().toLocaleString("default", { weekday: "long" })}</p>
+      <div className="flex gap-2">
+        <MoonPhase />
+        <p>{new Date().toLocaleString("default", { weekday: "long" })}</p>
+      </div>
       <p>
         {new Date().toLocaleString("default", { month: "long" })}{" "}
         {getOrdinalSuffix(new Date().getDate())}, {year}
