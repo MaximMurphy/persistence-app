@@ -67,12 +67,33 @@ const initialTaskList: Task[] = [
 export default function TaskSection() {
   const [taskList, setTaskList] = useState(initialTaskList);
 
+  const completedTasks = taskList.filter((task) => task.isComplete).length;
+  const totalTasks = taskList.length;
+  const completionPercentage = (completedTasks / totalTasks) * 100;
+
+  const nextDayTasks = taskList.filter(
+    (task) => task.isPersistent || (!task.isPersistent && !task.isComplete)
+  );
+
   const updateTaskList = (newTaskList: Task[]) => {
     setTaskList(newTaskList);
   };
 
   return (
     <div className="w-full h-full flex flex-col gap-4 lg:gap-2 mb-12 lg:mb-0">
+      <div className="flex flex-col gap-2 text-cream/75 text-sm lg:text-base">
+        <p>
+          {`You have completed ${completedTasks} out of ${totalTasks} tasks (${completionPercentage.toFixed(
+            0
+          )}%)${
+            completedTasks === 0
+              ? " - Get to work bro 😱"
+              : completedTasks === totalTasks
+              ? ` - Go relax homie 😤 - You will have ${nextDayTasks.length} tasks tomorrow.`
+              : ""
+          }`}
+        </p>
+      </div>
       <div className="w-full h-full lg:h-72 flex flex-col lg:flex-row justify-center items-center border lg:border-2 border-browser rounded-md overflow-scroll">
         <PersistentSection
           taskList={taskList}
