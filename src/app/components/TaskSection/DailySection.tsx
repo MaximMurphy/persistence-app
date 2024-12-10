@@ -17,30 +17,10 @@ export default function DailySection({
     setTasks(taskList.filter((task) => !task.isPersistent));
   }, [taskList]);
 
-  const toggleComplete = (id: string) => {
-    const newTaskList = taskList.map((task) => {
-      if (task.id === id) {
-        return { ...task, isComplete: !task.isComplete };
-      }
-      return task;
-    });
-    updateTaskList(newTaskList);
-  };
-
-  const togglePersistence = (task: Task) => {
+  const updateTask = (task: Task, updates: Partial<Task>) => {
     const newTaskList = taskList.map((t) => {
       if (t.id === task.id) {
-        return { ...t, isPersistent: !t.isPersistent };
-      }
-      return t;
-    });
-    updateTaskList(newTaskList);
-  };
-
-  const updateTask = (task: Task, newName: string) => {
-    const newTaskList = taskList.map((t) => {
-      if (t.id === task.id) {
-        return { ...t, name: newName };
+        return { ...t, ...updates };
       }
       return t;
     });
@@ -57,9 +37,7 @@ export default function DailySection({
           <TaskCard
             key={task.id}
             task={task}
-            toggleComplete={toggleComplete}
-            togglePersistence={togglePersistence}
-            updateTask={updateTask}
+            updateTask={(task, updates) => updateTask(task, updates)}
           />
         ))}
       </div>

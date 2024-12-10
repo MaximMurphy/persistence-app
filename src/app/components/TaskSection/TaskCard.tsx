@@ -5,14 +5,10 @@ import { useState, useRef } from "react";
 
 export default function TaskCard({
   task,
-  toggleComplete,
-  togglePersistence,
   updateTask,
 }: {
   task: Task;
-  toggleComplete: (id: string) => void;
-  togglePersistence: (task: Task) => void;
-  updateTask: (task: Task, newName: string) => void;
+  updateTask: (task: Task, updates: Partial<Task>) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(task.name);
@@ -29,14 +25,14 @@ export default function TaskCard({
   };
 
   const saveTask = () => {
-    updateTask(task, newName);
+    updateTask(task, { name: newName });
     setIsEditing(false);
   };
 
   return (
     <div key={task.id} className="lg:w-fit flex gap-4 items-center">
       <button
-        onClick={() => toggleComplete(task.id)}
+        onClick={() => updateTask(task, { isComplete: !task.isComplete })}
         className={clsx(
           "bg-background brightness-90 flex items-center justify-center relative w-6 h-6 border border-browser rounded-sm hover:outline-none hover:ring-2 hover:ring-accentBlue",
           task.isComplete && "bg-[#47155b] opacity-90"
@@ -91,7 +87,9 @@ export default function TaskCard({
             )}
           </button>
           <button
-            onClick={() => togglePersistence(task)}
+            onClick={() =>
+              updateTask(task, { isPersistent: !task.isPersistent })
+            }
             className={clsx(
               "flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentBlue"
             )}
