@@ -27,6 +27,11 @@ export default function PersistentSection({
     updateTaskList(newTaskList);
   };
 
+  const deleteTask = (task: Task) => {
+    const newTaskList = taskList.filter((t) => t.id !== task.id);
+    updateTaskList(newTaskList);
+  };
+
   return (
     <div className="bg-background h-full w-full flex flex-col justify-start px-4 py-4 lg:py-2 gap-4 border-b lg:border-b-0 lg:border-r border-browser overflow-scroll no-scrollbar">
       <p className="underline">Persistent</p>
@@ -36,6 +41,7 @@ export default function PersistentSection({
             key={task.id}
             task={task}
             updateTask={(task, updates) => updateTask(task, updates)}
+            deleteTask={(task) => deleteTask(task)}
           />
         ))}
       </div>

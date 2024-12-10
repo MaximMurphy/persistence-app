@@ -6,9 +6,11 @@ import { useState, useRef } from "react";
 export default function TaskCard({
   task,
   updateTask,
+  deleteTask,
 }: {
   task: Task;
   updateTask: (task: Task, updates: Partial<Task>) => void;
+  deleteTask: (task: Task) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(task.name);
@@ -18,9 +20,7 @@ export default function TaskCard({
   const editTask = () => {
     setIsEditing(true);
     setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
+      inputRef.current?.focus();
     }, 0);
   };
 
@@ -74,18 +74,30 @@ export default function TaskCard({
         )}
 
         <div className="flex gap-2">
-          <button
-            onClick={() => (isEditing ? saveTask() : editTask())}
-            className={clsx(
-              "flex items-center justify-center relative w-6 h-6  bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentBlue"
-            )}
-          >
-            {isEditing ? (
-              <Icon icon="lucide:save" width="12" height="12" />
-            ) : (
-              <Icon icon="lucide:edit" width="12" height="12" />
-            )}
-          </button>
+          <div className="flex gap-2 group">
+            <button
+              onClick={() => deleteTask(task)}
+              className={clsx(
+                "hidden group-hover:flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-red-900"
+              )}
+            >
+              <Icon icon="lucide:trash" width="12" height="12" />
+            </button>
+            <button
+              onClick={() => (isEditing ? saveTask() : editTask())}
+              className={clsx(
+                "flex items-center justify-center relative w-6 h-6  bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentBlue",
+                isEditing && "hover:ring-green-900"
+              )}
+            >
+              {isEditing ? (
+                <Icon icon="lucide:save" width="12" height="12" />
+              ) : (
+                <Icon icon="lucide:edit" width="12" height="12" />
+              )}
+            </button>
+          </div>
+
           <button
             onClick={() =>
               updateTask(task, { isPersistent: !task.isPersistent })

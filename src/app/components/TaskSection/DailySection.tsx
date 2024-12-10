@@ -27,6 +27,11 @@ export default function DailySection({
     updateTaskList(newTaskList);
   };
 
+  const deleteTask = (task: Task) => {
+    const newTaskList = taskList.filter((t) => t.id !== task.id);
+    updateTaskList(newTaskList);
+  };
+
   return (
     <div className="bg-background h-full w-full flex flex-col justify-start px-4 py-4 lg:py-2 gap-4 lg:border-l border-browser overflow-scroll no-scrollbar">
       <div className="flex justify-between items-end">
@@ -38,6 +43,7 @@ export default function DailySection({
             key={task.id}
             task={task}
             updateTask={(task, updates) => updateTask(task, updates)}
+            deleteTask={(task) => deleteTask(task)}
           />
         ))}
       </div>
@@ -47,7 +53,7 @@ export default function DailySection({
           <p className="hidden group-hover:flex underline">
             Pressing ✧ will persist your task for the future.
           </p>
-          <p className="peer bg-background brightness-90 w-[3.5rem] h-6 flex items-center justify-center text-center border border-browser rounded-sm cursor-help hover:outline-none hover:ring-2 hover:ring-accentBlue">
+          <p className="peer bg-background brightness-90 w-[3.5rem] h-6 flex items-center justify-center text-center text-xs border border-browser rounded-sm cursor-help hover:outline-none hover:ring-2 hover:ring-accentBlue">
             ✧?
           </p>
         </div>
