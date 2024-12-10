@@ -37,6 +37,16 @@ export default function DailySection({
     updateTaskList(newTaskList);
   };
 
+  const updateTask = (task: Task, newName: string) => {
+    const newTaskList = taskList.map((t) => {
+      if (t.id === task.id) {
+        return { ...t, name: newName };
+      }
+      return t;
+    });
+    updateTaskList(newTaskList);
+  };
+
   return (
     <div className="bg-background h-full w-full flex flex-col justify-start px-4 py-4 lg:py-2 gap-4 lg:border-l border-browser overflow-scroll no-scrollbar">
       <div className="flex justify-between items-end">
@@ -49,11 +59,12 @@ export default function DailySection({
             task={task}
             toggleComplete={toggleComplete}
             togglePersistence={togglePersistence}
+            updateTask={updateTask}
           />
         ))}
       </div>
 
-      <div className="w-full h-fit flex items-center justify-end text-xs px-4 text-cream/50">
+      <div className="w-full h-fit flex items-center justify-end text-[8px] lg:text-xs px-4 text-cream/50">
         <div className="group w-fit flex items-center gap-4">
           <p className="hidden group-hover:flex underline">
             Pressing ✧ will persist your task for the future.
