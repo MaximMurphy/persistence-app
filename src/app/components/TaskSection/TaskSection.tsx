@@ -5,51 +5,59 @@ import PersistentSection from "./PersistentSection";
 import DailySection from "./DailySection";
 import type { Task } from "@/types/types";
 
+const generateUUID = (): string => {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
+
 const initialTaskList: Task[] = [
   {
-    id: "1",
+    id: generateUUID(),
     name: "Task 1",
     isComplete: false,
     isPersistent: true,
   },
   {
-    id: "2",
+    id: generateUUID(),
     name: "Task 2",
     isComplete: false,
     isPersistent: true,
   },
   {
-    id: "3",
+    id: generateUUID(),
     name: "Task 3",
     isComplete: false,
     isPersistent: true,
   },
   {
-    id: "4",
+    id: generateUUID(),
     name: "Task 4",
     isComplete: false,
     isPersistent: true,
   },
   {
-    id: "5",
+    id: generateUUID(),
     name: "Task 5",
     isComplete: false,
     isPersistent: true,
   },
   {
-    id: "6",
+    id: generateUUID(),
     name: "Task 6",
     isComplete: false,
     isPersistent: true,
   },
   {
-    id: "7",
+    id: generateUUID(),
     name: "Task 7",
     isComplete: false,
     isPersistent: false,
   },
   {
-    id: "8",
+    id: generateUUID(),
     name: "Task 8",
     isComplete: false,
     isPersistent: false,
@@ -95,7 +103,7 @@ const NewTaskInput = ({
       const newTaskList = [
         ...taskList,
         {
-          id: (taskList.length + 1).toString(),
+          id: generateUUID(),
           name: newTaskName,
           isComplete: false,
           isPersistent: false,
