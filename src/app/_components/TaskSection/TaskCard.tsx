@@ -34,7 +34,7 @@ export default function TaskCard({
       <button
         onClick={() => updateTask(task, { isComplete: !task.isComplete })}
         className={clsx(
-          "bg-background brightness-90 flex items-center justify-center relative w-6 h-6 border border-browser rounded-sm hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200",
+          "brightness-90 flex items-center justify-center relative w-6 h-6 border border-browser rounded-sm hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200",
           task.isComplete && "bg-accentPurple opacity-90"
         )}
       >
