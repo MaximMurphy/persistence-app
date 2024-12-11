@@ -71,9 +71,10 @@ export default function TaskSection() {
   const totalTasks = taskList.length;
   const completionPercentage = (completedTasks / totalTasks) * 100;
 
-  const nextDayTasks = taskList.filter(
+  /* const nextDayTasks = taskList.filter(
     (task) => task.isPersistent || (!task.isPersistent && !task.isComplete)
   );
+*/
 
   const updateTaskList = (newTaskList: Task[]) => {
     setTaskList(newTaskList);
@@ -81,29 +82,24 @@ export default function TaskSection() {
 
   return (
     <div className="w-full h-full flex flex-col gap-4 lg:gap-2 mb-12 lg:mb-0">
-      <div className="h-8 flex flex-col gap-2 text-cream/75 text-sm lg:text-base text-center">
-        <p>
-          {`${completedTasks}/${totalTasks} tasks completed (${completionPercentage.toFixed(
-            0
-          )}%)${
-            completedTasks === 0
-              ? " - Get to work bro 😱"
-              : completedTasks === totalTasks
-              ? ` - Go relax homie 😤 - There are ${nextDayTasks.length} tasks tomorrow.`
-              : ""
-          }`}
-        </p>
-      </div>
-      <div className="w-full h-full lg:h-72 flex flex-col lg:flex-row justify-center items-center border lg:border-2 border-browser rounded-md overflow-scroll">
+      <div className="w-full h-full lg:h-96 flex flex-col lg:flex-row justify-center items-center border lg:border-2 border-browser rounded-md overflow-scroll">
         <PersistentSection
           taskList={taskList}
           updateTaskList={updateTaskList}
         />
         <DailySection taskList={taskList} updateTaskList={updateTaskList} />
       </div>
-
-      <div className="w-full flex justify-end">
-        <NewTaskInput taskList={taskList} setTaskList={setTaskList} />
+      <div className="flex flex-col lg:flex-row gap-2">
+        <div className="w-full lg:w-1/2 flex">
+          <CompletionReport
+            completedTasks={completedTasks}
+            totalTasks={totalTasks}
+            completionPercentage={completionPercentage}
+          />
+        </div>
+        <div className="w-full lg:w-1/2 flex">
+          <NewTaskInput taskList={taskList} setTaskList={setTaskList} />
+        </div>
       </div>
     </div>
   );
@@ -136,10 +132,7 @@ const NewTaskInput = ({
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full lg:w-1/2 flex gap-2 items-center"
-    >
+    <form onSubmit={handleSubmit} className="w-full flex gap-2 items-center">
       <input
         type="text"
         value={newTaskName}
@@ -154,5 +147,34 @@ const NewTaskInput = ({
         <span className="opacity-50">+</span>
       </button>
     </form>
+  );
+};
+
+const CompletionReport = ({
+  completedTasks,
+  totalTasks,
+  completionPercentage,
+}: {
+  completedTasks: number;
+  totalTasks: number;
+  completionPercentage: number;
+}) => {
+  return (
+    <div className="h-16 lg:h-full w-full flex gap-0 lg:gap-2 items-center justify-center px-4 py-2 bg-background brightness-90 border border-browser rounded-md text-cream/75 text-sm">
+      <p>
+        {completedTasks === 0
+          ? "🥺 "
+          : completedTasks > 0 && completedTasks <= totalTasks / 2
+          ? "🙂 "
+          : completedTasks > totalTasks / 2 && completedTasks < totalTasks
+          ? "🤠 "
+          : completedTasks === totalTasks
+          ? "😇 "
+          : ""}
+        {`${completedTasks}/${totalTasks} tasks completed (${completionPercentage.toFixed(
+          0
+        )}%)`}
+      </p>
+    </div>
   );
 };

@@ -43,7 +43,7 @@ export default function About() {
             following day, until they are completed. Persistent Tasks appear in
             the Persistent Section and will repeat every day regardless of
             whether or not they are completed. Tasks can be toggled between the
-            Persistent and Daily Sections using the Persist button defined
+            Persistent and Daily Sections using the persist button defined
             above.
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function About() {
           <h1 className="underline">Chart Explained: </h1>
           <p className="text-cream/75">
             Each rectangle in the chart represents a day of the year. The
-            intensity fof its color directly correlates to the percentage of
+            intensity of its color directly correlates to the percentage of
             tasks completed on that day. It is a great way to track your
             productivity over time.
           </p>

@@ -1,5 +1,6 @@
-import CompletionGraph from "./_components/CompletionGraph/CompletionGraph";
-import { getOrdinalSuffix } from "./_components/CompletionGraph/CompletionGraph";
+import CompletionGraph, {
+  getOrdinalSuffix,
+} from "./_components/CompletionGraph/CompletionGraph";
 import TaskSection from "./_components/TaskSection/TaskSection";
 import MoonPhase from "./_components/MoonPhase/MoonPhase";
 
@@ -12,8 +13,8 @@ export default function Home() {
         <div className="w-full flex flex-col gap-2">
           <DateDisplay year={year} />
           <CompletionGraph year={year} />
+          <TaskSection />
         </div>
-        <TaskSection />
       </div>
     </div>
   );
