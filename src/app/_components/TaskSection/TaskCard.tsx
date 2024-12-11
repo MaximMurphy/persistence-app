@@ -35,7 +35,7 @@ export default function TaskCard({
         onClick={() => updateTask(task, { isComplete: !task.isComplete })}
         className={clsx(
           "bg-background brightness-90 flex items-center justify-center relative w-6 h-6 border border-browser rounded-sm hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200",
-          task.isComplete && "bg-[#47155b] opacity-90"
+          task.isComplete && "bg-accentPurple opacity-90"
         )}
       >
         {task.isComplete && <Icon icon="lucide:check" width="12" height="12" />}
@@ -45,7 +45,7 @@ export default function TaskCard({
           "w-[17rem] lg:w-[22.75rem] flex justify-between px-4 py-2 bg-background brightness-90 border border-browser rounded-md ransition ease-in-out duration-200",
           task.isComplete &&
             "bg-gradient-to-br from-background to-accentPurple/60",
-          isEditing && "bg-[#47155b]/50"
+          isEditing && "bg-accentPurple/50"
         )}
       >
         {isEditing ? (
