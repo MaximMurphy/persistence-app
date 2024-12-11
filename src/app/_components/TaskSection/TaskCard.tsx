@@ -30,7 +30,7 @@ export default function TaskCard({
   };
 
   return (
-    <div key={task.id} className="lg:w-fit flex gap-4 items-center">
+    <div key={task.id} className="w-full flex gap-4 items-center">
       <button
         onClick={() => updateTask(task, { isComplete: !task.isComplete })}
         className={clsx(
@@ -43,7 +43,7 @@ export default function TaskCard({
       <div className="w-full overflow-scroll">
         <div
           className={clsx(
-            "w-full lg:w-[22.75rem] flex justify-between px-4 py-2 bg-background brightness-90 border border-browser rounded-md hover:brightness-100 transition ease-in-out duration-200",
+            "w-full flex justify-between px-4 py-2 bg-background brightness-90 border border-browser rounded-md hover:brightness-100 transition ease-in-out duration-200",
             task.isComplete &&
               "bg-gradient-to-br from-background to-accentPurple/60",
             isEditing && "bg-accentPurple/50"

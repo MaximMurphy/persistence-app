@@ -8,7 +8,7 @@ import MockTask, {
 export default function About() {
   return (
     <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center px-6 lg:px-48 pt-8 lg:pt-0 pb-12 lg:pb-0 gap-4 lg:gap-12">
-      <div className="w-full h-fit flex flex-col py-4 px-4 gap-4 border lg:border-2 border-browser rounded-md text-sm lg:text-base">
+      <div className="w-full lg:w-[60rem] h-fit flex flex-col py-4 px-4 gap-4 border lg:border-2 border-browser rounded-md text-sm lg:text-base">
         <div className="flex flex-col gap-2">
           <h1 className="underline">Key:</h1>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2 text-xs">
@@ -57,7 +57,7 @@ export default function About() {
           </p>
         </div>
         <div className="w-full flex items-center justify-center mt-4">
-          <p className="text-xs opacity-50">{`© ${new Date().getFullYear()} Maxim Murphy - All rights reserved`}</p>
+          <p className="text-xs opacity-25">{`© ${new Date().getFullYear()} Maxim Murphy - All rights reserved`}</p>
         </div>
       </div>
     </div>

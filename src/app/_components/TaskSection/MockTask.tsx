@@ -4,9 +4,9 @@ import { Icon } from "@iconify-icon/react";
 
 export default function MockTask() {
   return (
-    <div className="lg:w-fit flex gap-4 items-center">
+    <div className="w-full flex gap-4 items-center">
       <CompletedButton />
-      <div className="w-[17rem] lg:w-[22.75rem] flex justify-between px-4 py-2 bg-background brightness-90 border border-browser rounded-md transition ease-in-out duration-200">
+      <div className="w-full lg:w-[calc(50%-44px)] flex justify-between px-4 py-2 bg-background brightness-90 border border-browser rounded-md hover:brightness-100 transition ease-in-out duration-200">
         <p className="h-fit w-fit text-base text-cream/50 overflow-x-auto whitespace-nowrap overflow-scroll no-scrollbar">
           Task Name
         </p>
@@ -49,7 +49,7 @@ export const PersistButton = () => {
 
 export const CompletedButton = () => {
   return (
-    <button className="brightness-90 flex items-center justify-center relative w-6 h-6 border border-browser rounded-sm hover:brightness-150 hover:outline-none hover:ring-2 hover:ring-accentPurple active:bg-accentPurple transition ease-in-out duration-200">
+    <button className="brightness-90 flex items-center justify-center relative w-6 h-6 border border-browser rounded-sm hover:brightness-150 hover:outline-none hover:ring-2 hover:ring-accentPurple active:bg-accentPurple text-background active:text-cream transition ease-in-out duration-200">
       <Icon icon="lucide:check" width="12" height="12" />
     </button>
   );
