@@ -16,7 +16,7 @@ export default function Footer() {
         </Link>
       </div>
       <div className="w-full lg:w-1/3 h-fit flex items-center justify-center lg:justify-end">
-        <Link href="/" className="w-fit hover:underline lg:pr-24">
+        <Link href="/account" className="w-fit hover:underline lg:pr-24">
           Account
         </Link>
       </div>
