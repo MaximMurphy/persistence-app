@@ -81,15 +81,15 @@ export default function TaskSection() {
 
   return (
     <div className="w-full h-full flex flex-col gap-4 lg:gap-2 mb-12 lg:mb-0">
-      <div className="flex flex-col gap-2 text-cream/75 text-sm lg:text-base">
+      <div className="h-8 flex flex-col gap-2 text-cream/75 text-sm lg:text-base text-center">
         <p>
-          {`You have completed ${completedTasks} out of ${totalTasks} tasks (${completionPercentage.toFixed(
+          {`${completedTasks}/${totalTasks} tasks completed (${completionPercentage.toFixed(
             0
           )}%)${
             completedTasks === 0
               ? " - Get to work bro 😱"
               : completedTasks === totalTasks
-              ? ` - Go relax homie 😤 - You will have ${nextDayTasks.length} tasks tomorrow.`
+              ? ` - Go relax homie 😤 - There are ${nextDayTasks.length} tasks tomorrow.`
               : ""
           }`}
         </p>

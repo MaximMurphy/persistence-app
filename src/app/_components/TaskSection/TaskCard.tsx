@@ -34,7 +34,7 @@ export default function TaskCard({
       <button
         onClick={() => updateTask(task, { isComplete: !task.isComplete })}
         className={clsx(
-          "brightness-90 flex items-center justify-center relative w-6 h-6 border border-browser rounded-sm hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200",
+          "brightness-90 flex items-center justify-center relative w-6 h-6 border border-browser rounded-sm hover:brightness-150 hover:outline-none hover:ring-2 hover:ring-accentPurple active:bg-accentPurple transition ease-in-out duration-200",
           task.isComplete && "bg-accentPurple opacity-90"
         )}
       >
@@ -54,7 +54,7 @@ export default function TaskCard({
             value={newName}
             ref={inputRef}
             onChange={(e) => setNewName(e.target.value)}
-            className="text-cream/90 bg-transparent focus:outline-none focus:ring-0"
+            className="w-full text-cream/90 bg-transparent focus:outline-none focus:ring-0"
             onBlur={saveTask}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -65,7 +65,7 @@ export default function TaskCard({
         ) : (
           <p
             className={clsx(
-              "h-fit overflow-x-auto whitespace-nowrap overflow-scroll no-scrollbar",
+              "h-fit w-fit overflow-x-auto whitespace-nowrap overflow-scroll no-scrollbar",
               task.isComplete ? "line-through" : ""
             )}
           >
@@ -78,7 +78,7 @@ export default function TaskCard({
             <button
               onClick={() => deleteTask(task)}
               className={clsx(
-                "hidden group-hover:flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-red-900 transition ease-in-out duration-200"
+                "hidden group-hover:flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-red-900 active:bg-red-900 transition ease-in-out duration-200"
               )}
             >
               <Icon icon="lucide:trash" width="12" height="12" />
@@ -86,8 +86,8 @@ export default function TaskCard({
             <button
               onClick={() => (isEditing ? saveTask() : editTask())}
               className={clsx(
-                "flex items-center justify-center relative w-6 h-6  bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200",
-                isEditing && "hover:ring-green-900"
+                "flex items-center justify-center relative w-6 h-6  bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentBlueWithLife active:bg-accentBlueWithLife transition ease-in-out duration-200",
+                isEditing && "hover:ring-green-900 active:bg-green-900"
               )}
             >
               {isEditing ? (
@@ -97,13 +97,12 @@ export default function TaskCard({
               )}
             </button>
           </div>
-
           <button
             onClick={() =>
               updateTask(task, { isPersistent: !task.isPersistent })
             }
             className={clsx(
-              "flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200"
+              "flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-accentPink active:bg-accentPink transition ease-in-out duration-200"
             )}
           >
             {task.isPersistent ? "✦" : "✧"}

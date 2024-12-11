@@ -13,6 +13,7 @@ export default {
         browser: "#2f333b",
         cream: "#f8f2ea",
         accentBlue: "#112179",
+        accentBlueWithLife: "#142ba8",
         accentPurple: "#47155b",
         accentPink: "#d682c1",
       },
