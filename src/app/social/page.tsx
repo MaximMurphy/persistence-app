@@ -1,4 +1,4 @@
-import CompletionGraph from "../_components/CompletionGraph/CompletionGraph";
+import CompletionGraph from "@/_components/CompletionGraph/CompletionGraph";
 
 export default function Social() {
   const year = new Date().getFullYear();

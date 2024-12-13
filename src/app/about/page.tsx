@@ -3,7 +3,7 @@ import MockTask, {
   DeleteButton,
   EditButton,
   PersistButton,
-} from "@/app/_components/TaskSection/MockTask";
+} from "@/_components/TaskSection/MockTask";
 
 export default function About() {
   return (

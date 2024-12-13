@@ -1,8 +1,8 @@
 import CompletionGraph, {
   getOrdinalSuffix,
-} from "./_components/CompletionGraph/CompletionGraph";
-import TaskSection from "./_components/TaskSection/TaskSection";
-import MoonPhase from "./_components/MoonPhase/MoonPhase";
+} from "@/_components/CompletionGraph/CompletionGraph";
+import TaskSection from "@/_components/TaskSection/TaskSection";
+import MoonPhase from "@/_components/MoonPhase/MoonPhase";
 
 export default function Home() {
   const year = new Date().getFullYear();
