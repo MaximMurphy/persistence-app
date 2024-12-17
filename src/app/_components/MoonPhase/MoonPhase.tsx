@@ -48,6 +48,6 @@ export default function MoonPhase() {
   }
 
   return (
-    <h1 className="text-lg lg:text-2xl brightness-75">{moonPhaseEmoji}</h1>
+    <h1 className="text-lg lg:text-2xl brightness-90">{moonPhaseEmoji}</h1>
   );
 }
