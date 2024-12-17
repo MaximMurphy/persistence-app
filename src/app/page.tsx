@@ -3,6 +3,7 @@ import CompletionGraph, {
 } from "@/app/_components/CompletionGraph/CompletionGraph";
 import TaskSection from "@/app/_components/TaskSection/TaskSection";
 import MoonPhase from "@/app/_components/MoonPhase/MoonPhase";
+import Login from "./login/page";
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -14,6 +15,7 @@ export default function Home() {
           <DateDisplay year={year} />
           <CompletionGraph year={year} />
           <TaskSection />
+          <Login />
         </div>
       </div>
     </div>
