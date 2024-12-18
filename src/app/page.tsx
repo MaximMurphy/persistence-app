@@ -1,38 +1,26 @@
-import CompletionGraph, {
-  getOrdinalSuffix,
-} from "@/app/_components/CompletionGraph/CompletionGraph";
-import TaskSection from "@/app/_components/TaskSection/TaskSection";
-import MoonPhase from "@/app/_components/MoonPhase/MoonPhase";
-import Login from "./login/page";
+import Image from "next/image";
+import logo from "@/public/logo.svg";
+import { SignIn } from "@/app/_components/Buttons/SignIn";
 
 export default function Home() {
-  const year = new Date().getFullYear();
-
   return (
-    <div className="h-full w-full flex flex-col items-center justify-start px-6 md:px-12 lg:px-0 py-4 lg:py-0 gap-12">
-      <div className="w-full lg:w-fit h-full flex flex-col items-center justify-start gap-8">
-        <div className="w-full lg:w-[60rem] flex flex-col gap-2">
-          <DateDisplay year={year} />
-          <CompletionGraph year={year} />
-          <TaskSection />
-          <Login />
-        </div>
+    <div className="bg-gradient-to-tl from-background via-background to-accentPurple/75 h-full w-full flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-24">
+      <Image
+        src={logo}
+        alt="Logo"
+        className="w-48 lg:w-96 h-fit shadow-inner shadow-cream rounded-lg"
+      />
+      <div className="w-[32rem] flex flex-col gap-4 p-8">
+        <h1>Persistence - A Productivity App</h1>
+        <p>
+          Tempor in ea ad ad ad laboris eu esse laborum velit aute anim cillum
+          aliqua sit. Elit ad nulla cupidatat Lorem sit esse excepteur Lorem
+          aute non duis ad. Est do id nisi ex elit ad deserunt. Culpa
+          exercitation ex ex eiusmod deserunt id. Dolore magna consequat do
+          ullamco voluptate culpa nulla nostrud Lorem Lorem.
+        </p>
+        <SignIn />
       </div>
     </div>
   );
 }
-
-const DateDisplay = ({ year }: { year: number }) => {
-  return (
-    <div className="w-full flex text-lg lg:text-2xl justify-between">
-      <div className="flex gap-2">
-        <MoonPhase />
-        <p>{new Date().toLocaleString("default", { weekday: "long" })}</p>
-      </div>
-      <p>
-        {new Date().toLocaleString("default", { month: "long" })}{" "}
-        {getOrdinalSuffix(new Date().getDate())}, {year}
-      </p>
-    </div>
-  );
-};

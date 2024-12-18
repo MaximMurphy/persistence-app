@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className="w-full h-32 lg:h-fit flex shrink-0 items-center justify-center py-2 text-cream/75">
       <div className="w-full lg:w-1/2 h-fit flex items-center justify-center lg:justify-start lg:pl-8">
-        <Link href="/">
+        <Link href="/dashboard">
           <Image
             src={letters}
             alt="logo"
