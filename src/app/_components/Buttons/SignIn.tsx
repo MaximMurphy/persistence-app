@@ -12,7 +12,7 @@ export const SignIn = () => {
 
   if (status === "authenticated") {
     return (
-      <div className="w-fit h-fit p-4 border-2 border-browser rounded-md">
+      <div className="w-fit h-fit py-4">
         <p>Welcome {session.user?.name}!</p>
       </div>
     );
