@@ -4,7 +4,15 @@ import CompletionGraph, {
 import TaskSection from "@/app/_components/TaskSection/TaskSection";
 import MoonPhase from "@/app/_components/MoonPhase/MoonPhase";
 
-export default function Home() {
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
+export default async function Home() {
+  const session = await getServerSession();
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   const year = new Date().getFullYear();
 
   return (
