@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { getOrdinalSuffix } from "@/app/_components/DateDisplay/DateDisplay";
 
 export default function CompletionGraph({ year }: { year: number }) {
   const daysInYear: number[] =
@@ -61,17 +62,3 @@ export default function CompletionGraph({ year }: { year: number }) {
     </div>
   );
 }
-
-export const getOrdinalSuffix = (number: number): string => {
-  const lastDigit = number % 10;
-  if (lastDigit === 1 && number !== 11) {
-    return number + "st";
-  }
-  if (lastDigit === 2 && number !== 12) {
-    return number + "nd";
-  }
-  if (lastDigit === 3 && number !== 13) {
-    return number + "rd";
-  }
-  return number + "th";
-};
