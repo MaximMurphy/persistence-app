@@ -27,9 +27,25 @@ export default function PersistentSection({
     updateTaskList(newTaskList);
   };
 
-  const deleteTask = (task: Task) => {
+  const deleteTask = async (task: Task) => {
     const newTaskList = taskList.filter((t) => t.id !== task.id);
     updateTaskList(newTaskList);
+
+    try {
+      const response = await fetch(`/api/tasks`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: task.id }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete task");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -71,3 +71,25 @@ export async function PATCH(req: NextRequest) {
     );
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await req.json();
+
+  try {
+    await prisma.task.delete({
+      where: { id },
+    });
+    return NextResponse.json({ message: "Task deleted" }, { status: 200 });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Failed to delete task" },
+      { status: 500 }
+    );
+  }
+}
