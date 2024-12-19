@@ -5,27 +5,6 @@ import type { Task, InitialTaskProps } from "@/types/types";
 import PersistentSection from "./PersistentSection";
 import DailySection from "./DailySection";
 
-const generateUUID = (): string => {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-};
-//   {
-//     id: generateUUID(),
-//     name: "Task 1",
-//     isComplete: false,
-//     isPersistent: true,
-//   },
-//   {
-//     id: generateUUID(),
-//     name: "Task 2",
-//     isComplete: false,
-//     isPersistent: false,
-//   },
-// ];
-
 export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
   const [taskList, setTaskList] = useState<Task[]>(initialTasks);
 
@@ -67,6 +46,14 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
   );
 }
 
+// const generateUUID = (): string => {
+//   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+//     const r = (Math.random() * 16) | 0;
+//     const v = c === "x" ? r : (r & 0x3) | 0x8;
+//     return v.toString(16);
+//   });
+// };
+
 const NewTaskInput = ({
   taskList,
   setTaskList,
@@ -76,20 +63,28 @@ const NewTaskInput = ({
 }) => {
   const [newTaskName, setNewTaskName] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (newTaskName) {
-      const newTaskList = [
-        ...taskList,
-        {
-          id: generateUUID(),
-          name: newTaskName,
-          isComplete: false,
-          isPersistent: false,
-        },
-      ];
-      setTaskList(newTaskList);
-      setNewTaskName("");
+      try {
+        const response = await fetch("/api/tasks", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: newTaskName }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to create task");
+        }
+        const newTask = await response.json();
+        setTaskList([...taskList, newTask]);
+        setNewTaskName("");
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error) {
+        throw new Error("Failed to create task");
+      }
     }
   };
 
