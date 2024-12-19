@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Icon } from "@iconify-icon/react";
 import { useSession } from "next-auth/react";
 
 export default function UserInfo() {
@@ -10,7 +11,7 @@ export default function UserInfo() {
   return (
     <div className="w-fit flex gap-4 text-cream/75">
       {status === "loading" ? (
-        <p>Loading...</p>
+        <Icon icon="eos-icons:loading" width="24" height="24" />
       ) : status === "authenticated" ? (
         <Image
           src={session.user?.image ?? "/logo.png"}
