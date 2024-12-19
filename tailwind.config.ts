@@ -17,9 +17,6 @@ export default {
         accentPurple: "#47155b",
         accentPink: "#d682c1",
       },
-      gridTemplateColumns: {
-        "auto-fill": "repeat(auto-fill, minmax(0, 1fr))",
-      },
     },
   },
   plugins: [],

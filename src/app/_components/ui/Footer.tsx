@@ -7,7 +7,7 @@ export default async function Footer() {
   const session = await getServerSession();
 
   return (
-    <div className="w-full h-fit flex shrink-0 items-center justify-center py-4 text-cream/75 text-xs lg:text-base">
+    <div className="bg-background w-full h-fit flex shrink-0 items-center justify-center py-4 text-cream/75 text-xs lg:text-base">
       <div className="w-full lg:w-1/3 h-fit flex items-center justify-center lg:justify-start">
         {!session ? (
           ""
