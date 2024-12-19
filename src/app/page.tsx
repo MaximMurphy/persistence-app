@@ -11,11 +11,10 @@ export default function Home() {
       <div className="bg-cream shadow-xl h-fit border-2 border-browser text-background w-full lg:w-[36rem] flex flex-col rounded-md gap-4 p-8 items-center lg:items-start justify-center text-justify">
         <Image src={logo} alt="logo" className="w-full h-auto" />
         <p className="px-2">
-          Tempor in ea ad ad ad laboris eu esse laborum velit aute anim cillum
-          aliqua sit. Elit ad nulla cupidatat Lorem sit esse excepteur Lorem
-          aute non duis ad. Est do id nisi ex elit ad deserunt. Culpa
-          exercitation ex ex eiusmod deserunt id. Dolore magna consequat do
-          ullamco voluptate culpa nulla nostrud Lorem Lorem.
+          This is in theory the standard To-Do List app except with more
+          features, styled better than other versions, and designed specifically
+          for me to use MYSELF to keep track of my day-to-day tasks and
+          productivity throughout the year. Use it as you see fit.
         </p>
         <div className="w-full flex flex-col lg:flex-row justify-between gap-4 lg:gap-0 px-2">
           <SignIn />

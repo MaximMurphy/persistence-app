@@ -1,13 +1,13 @@
-This is in theory the standard To-Do List app except with more features, styled better than any other junior devs' versions, and designed specifically for me to use MYSELF to keep track of my day-to-day tasks and productivity throughout the year.
+This is in theory the standard To-Do List app except with more features, styled better than other versions, and designed specifically for me to use MYSELF to keep track of my day-to-day tasks and productivity throughout the year. Use it as you see fit.
 
 ![Screenshot 2024-12-12 at 4 38 38 PM](https://github.com/user-attachments/assets/604f7a6a-c2ca-4145-a05f-87dad0ee6d79)
 
 Built with Next.js, Typescript
-Auth - TBD
-Backend built with PostgreSQL, Prisma most likely - I'm in the process of doing that.
+Auth - Next-auth
+Database - Neon PostgreSQL
+ORM - Prisma
 Styled with TailwindCSS
 Logos designed in Canva
-
 
 Features:
 
