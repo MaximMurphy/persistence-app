@@ -9,16 +9,16 @@ export const GridBackground = () => {
 
     // First row pattern: cream blue purple pink
     const firstRowPattern: { [key: number]: string } = {
-      0: "bg-cream",
-      1: "bg-accentBlue",
+      0: "bg-accentBlue",
+      1: "bg-cream",
       2: "bg-accentPurple",
       3: "bg-accentPink",
     };
 
     // Second row pattern: blue cream pink purple
     const secondRowPattern: { [key: number]: string } = {
-      0: "bg-accentBlue",
-      1: "bg-cream",
+      0: "bg-cream",
+      1: "bg-accentBlue",
       2: "bg-accentPink",
       3: "bg-accentPurple",
     };
