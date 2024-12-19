@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Task } from "@/types/types";
+import type { Task, InitialTaskProps } from "@/types/types";
 import PersistentSection from "./PersistentSection";
 import DailySection from "./DailySection";
 
@@ -12,8 +12,6 @@ const generateUUID = (): string => {
     return v.toString(16);
   });
 };
-
-// const initialTaskList: Task[] = [
 //   {
 //     id: generateUUID(),
 //     name: "Task 1",
@@ -28,13 +26,7 @@ const generateUUID = (): string => {
 //   },
 // ];
 
-interface TaskSectionClientProps {
-  initialTasks: Task[];
-}
-
-export default function TaskSectionClient({
-  initialTasks,
-}: TaskSectionClientProps) {
+export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
   const [taskList, setTaskList] = useState<Task[]>(initialTasks);
 
   const completedTasks = taskList.filter((task) => task.isComplete).length;

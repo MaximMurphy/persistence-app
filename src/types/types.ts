@@ -5,6 +5,10 @@ export type Task = {
   isPersistent: boolean;
 };
 
+export type InitialTaskProps = {
+  initialTasks: Task[];
+};
+
 export type Props = {
   taskList: Task[];
 };
