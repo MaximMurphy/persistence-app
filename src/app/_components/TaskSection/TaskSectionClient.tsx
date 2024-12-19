@@ -17,8 +17,27 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
   );
 */
 
-  const updateTaskList = (newTaskList: Task[]) => {
+  const updateTaskList = async (newTaskList: Task[]) => {
     setTaskList(newTaskList);
+
+    for (const task of newTaskList) {
+      try {
+        const response = await fetch(`/api/tasks`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(task),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to update task");
+        }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error) {
+        throw new Error("Failed to update task");
+      }
+    }
   };
 
   return (
@@ -45,14 +64,6 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
     </div>
   );
 }
-
-// const generateUUID = (): string => {
-//   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-//     const r = (Math.random() * 16) | 0;
-//     const v = c === "x" ? r : (r & 0x3) | 0x8;
-//     return v.toString(16);
-//   });
-// };
 
 const NewTaskInput = ({
   taskList,
