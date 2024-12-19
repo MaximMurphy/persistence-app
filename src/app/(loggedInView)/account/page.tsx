@@ -2,10 +2,11 @@ import { SignOut } from "@/app/_components/Buttons/SignOut";
 import UserInfo from "@/app/_components/UserInfo/UserInfo";
 
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 export default async function Account() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/api/auth/signin");
   }

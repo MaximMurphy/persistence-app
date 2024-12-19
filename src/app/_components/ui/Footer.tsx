@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import word from "@/public/word.svg";
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export default async function Footer() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <div className="bg-background w-full h-fit flex shrink-0 items-center justify-center py-4 text-cream/75 text-xs lg:text-base">

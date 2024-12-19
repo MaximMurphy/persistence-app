@@ -20,14 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AuthProvider>
-      <html lang="en">
-        <body
-          className={`${sapceGrotesk.className} antialiased min-h-screen lg:h-screen w-full flex flex-col`}
-        >
-          <div className="flex-grow">{children}</div>
-        </body>
-      </html>
-    </AuthProvider>
+    <html lang="en">
+      <body
+        className={`${sapceGrotesk.className} antialiased min-h-screen lg:h-screen w-full flex flex-col`}
+      >
+        <div className="flex-grow">
+          <AuthProvider>{children}</AuthProvider>
+        </div>
+      </body>
+    </html>
   );
 }

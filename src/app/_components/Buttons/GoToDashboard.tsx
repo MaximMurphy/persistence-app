@@ -1,8 +1,11 @@
-import { getServerSession } from "next-auth";
+"use client";
+
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default async function GoToDashboard() {
-  const session = await getServerSession();
+export default function GoToDashboard() {
+  const { data: session } = useSession();
+
   return (
     <>
       {session && (
