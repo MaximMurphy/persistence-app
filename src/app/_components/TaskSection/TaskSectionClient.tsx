@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import type { Task } from "@/types/types";
 import PersistentSection from "./PersistentSection";
 import DailySection from "./DailySection";
-import type { Task } from "@/types/types";
 
 const generateUUID = (): string => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
@@ -13,59 +13,29 @@ const generateUUID = (): string => {
   });
 };
 
-const initialTaskList: Task[] = [
-  {
-    id: generateUUID(),
-    name: "Task 1",
-    isComplete: false,
-    isPersistent: true,
-  },
-  {
-    id: generateUUID(),
-    name: "Task 2",
-    isComplete: false,
-    isPersistent: true,
-  },
-  {
-    id: generateUUID(),
-    name: "Task 3",
-    isComplete: false,
-    isPersistent: true,
-  },
-  {
-    id: generateUUID(),
-    name: "Task 4",
-    isComplete: false,
-    isPersistent: true,
-  },
-  {
-    id: generateUUID(),
-    name: "Task 5",
-    isComplete: false,
-    isPersistent: true,
-  },
-  {
-    id: generateUUID(),
-    name: "Task 6",
-    isComplete: false,
-    isPersistent: true,
-  },
-  {
-    id: generateUUID(),
-    name: "Task 7",
-    isComplete: false,
-    isPersistent: false,
-  },
-  {
-    id: generateUUID(),
-    name: "Task 8",
-    isComplete: false,
-    isPersistent: false,
-  },
-];
+// const initialTaskList: Task[] = [
+//   {
+//     id: generateUUID(),
+//     name: "Task 1",
+//     isComplete: false,
+//     isPersistent: true,
+//   },
+//   {
+//     id: generateUUID(),
+//     name: "Task 2",
+//     isComplete: false,
+//     isPersistent: false,
+//   },
+// ];
 
-export default function TaskSection() {
-  const [taskList, setTaskList] = useState(initialTaskList);
+interface TaskSectionClientProps {
+  initialTasks: Task[];
+}
+
+export default function TaskSectionClient({
+  initialTasks,
+}: TaskSectionClientProps) {
+  const [taskList, setTaskList] = useState<Task[]>(initialTasks);
 
   const completedTasks = taskList.filter((task) => task.isComplete).length;
   const totalTasks = taskList.length;

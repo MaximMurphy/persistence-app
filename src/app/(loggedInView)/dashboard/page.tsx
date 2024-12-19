@@ -1,6 +1,6 @@
 import CompletionGraph from "@/app/_components/CompletionGraph/CompletionGraph";
 import DateDisplay from "@/app/_components/DateDisplay/DateDisplay";
-import TaskSection from "@/app/_components/TaskSection/TaskSection";
+import TaskSectionServer from "@/app/_components/TaskSection/TaskSectionServer";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -20,7 +20,7 @@ export default async function Home() {
         <div className="w-full lg:w-[60rem] flex flex-col gap-2">
           <DateDisplay year={year} />
           <CompletionGraph year={year} />
-          <TaskSection />
+          <TaskSectionServer />
         </div>
       </div>
     </div>
