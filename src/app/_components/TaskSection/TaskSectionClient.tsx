@@ -12,11 +12,6 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
   const totalTasks = taskList.length;
   const completionPercentage = (completedTasks / totalTasks) * 100;
 
-  /* const nextDayTasks = taskList.filter(
-    (task) => task.isPersistent || (!task.isPersistent && !task.isComplete)
-  );
-*/
-
   const updateTaskList = async (newTaskList: Task[]) => {
     setTaskList(newTaskList);
 
