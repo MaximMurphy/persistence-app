@@ -1,15 +1,22 @@
+import { unstable_noStore as noStore } from "next/cache";
 import MoonPhase from "@/app/_components/MoonPhase/MoonPhase";
 
 export default function DateDisplay({ year }: { year: number }) {
+  // prevent caching
+  noStore();
+
+  // Get current date
+  const date = new Date();
+
   return (
     <div className="w-full flex text-lg lg:text-2xl justify-between">
       <div className="flex gap-2">
         <MoonPhase />
-        <p>{new Date().toLocaleString("default", { weekday: "long" })}</p>
+        <p>{date.toLocaleString("default", { weekday: "long" })}</p>
       </div>
       <p>
-        {new Date().toLocaleString("default", { month: "long" })}{" "}
-        {getOrdinalSuffix(new Date().getDate())}, {year}
+        {date.toLocaleString("default", { month: "long" })}{" "}
+        {getOrdinalSuffix(date.getDate())}, {year}
       </p>
     </div>
   );

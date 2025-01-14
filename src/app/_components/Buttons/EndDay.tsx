@@ -22,19 +22,18 @@ const endDay = (
   deleteTask: (taskId: string) => void
 ) => {
   console.log("Day ended");
-  const completionPercentage = saveCompletionPercentage(taskList);
+  const completionPercentage = calculateCompletionPercentage(taskList);
   console.log("Completion percentage: ", completionPercentage);
   recycleTasks(taskList, updateTaskList, deleteTask);
 };
 
 // TODO: save completion percentage for day to DB.
-const saveCompletionPercentage = (taskList: Task[]) => {
+const calculateCompletionPercentage = (taskList: Task[]) => {
   const completedTasks = taskList.filter((task) => task.isComplete).length;
   const totalTasks = taskList.length;
-  return (completedTasks / totalTasks) * 100;
+  return totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
 };
 
-// Cycle through tasks, delete tasks that are not persistent and complete, and reset tasks to isComplete: false
 const recycleTasks = (
   taskList: Task[],
   updateTaskList: (newTaskList: Task[]) => void,
