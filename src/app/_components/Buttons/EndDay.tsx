@@ -1,14 +1,14 @@
-import type { TaskSectionProps } from "@/types/types";
+import type { EndDayProps } from "@/types/types";
 import type { Task } from "@/types/types";
 
 export default function EndDay({
   taskList,
   updateTaskList,
   deleteTask,
-}: TaskSectionProps) {
+}: EndDayProps) {
   return (
     <button
-      onClick={() => endDay(taskList, updateTaskList)}
+      onClick={() => endDay(taskList, updateTaskList, deleteTask)}
       className="w-12 p-2 bg-background brightness-90 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200"
     >
       End Day
@@ -18,12 +18,13 @@ export default function EndDay({
 
 const endDay = (
   taskList: Task[],
-  updateTaskList: (newTaskList: Task[]) => void
+  updateTaskList: (newTaskList: Task[]) => void,
+  deleteTask: (taskId: string) => void
 ) => {
   console.log("Day ended");
   const completionPercentage = saveCompletionPercentage(taskList);
   console.log("Completion percentage: ", completionPercentage);
-  recycleTasks(taskList, updateTaskList);
+  recycleTasks(taskList, updateTaskList, deleteTask);
 };
 
 // TODO: save completion percentage for day to DB.
@@ -36,10 +37,21 @@ const saveCompletionPercentage = (taskList: Task[]) => {
 // Cycle through tasks, delete tasks that are not persistent and complete, and reset tasks to isComplete: false
 const recycleTasks = (
   taskList: Task[],
-  updateTaskList: (newTaskList: Task[]) => void
+  updateTaskList: (newTaskList: Task[]) => void,
+  deleteTask: (taskId: string) => void
 ) => {
-  const newTaskList = taskList
+  const tasksToDelete = taskList.filter(
+    (task) => !task.isPersistent && task.isComplete
+  );
+  const tasksToUpdate = taskList
     .filter((task) => task.isPersistent || !task.isComplete)
     .map((task) => ({ ...task, isComplete: false }));
-  updateTaskList(newTaskList);
+
+  // Delete tasks
+  for (const task of tasksToDelete) {
+    deleteTask(task.id);
+  }
+
+  // Update remaining tasks
+  updateTaskList(tasksToUpdate);
 };

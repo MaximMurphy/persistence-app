@@ -8,7 +8,7 @@ import TaskCard from "./TaskCard";
 export default function PersistentSection({
   taskList,
   updateTaskList,
-  deleteTask,
+  deleteTaskInPlace,
 }: TaskSectionProps) {
   const [tasks, setTasks] = useState(
     taskList.filter((task) => task.isPersistent)
@@ -37,7 +37,7 @@ export default function PersistentSection({
             key={task.id}
             task={task}
             updateTask={(task, updates) => updateTask(task, updates)}
-            deleteTask={(task) => deleteTask(task.id)}
+            deleteTaskInPlace={(task) => deleteTaskInPlace(task.id)}
           />
         ))}
       </div>

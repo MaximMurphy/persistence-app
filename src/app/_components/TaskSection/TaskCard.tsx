@@ -6,11 +6,11 @@ import { useState, useRef } from "react";
 export default function TaskCard({
   task,
   updateTask,
-  deleteTask,
+  deleteTaskInPlace,
 }: {
   task: Task;
   updateTask: (task: Task, updates: Partial<Task>) => void;
-  deleteTask: (task: Task) => void;
+  deleteTaskInPlace: (task: Task) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(task.name);
@@ -77,7 +77,7 @@ export default function TaskCard({
           <div className="flex gap-2">
             <div className="flex gap-2 group">
               <button
-                onClick={() => deleteTask(task)}
+                onClick={() => deleteTaskInPlace(task)}
                 className={clsx(
                   "hidden group-hover:flex items-center justify-center relative w-6 h-6 bg-background brightness-75 border border-browser rounded-sm hover:brightness-100 hover:outline-none hover:ring-2 hover:ring-red-900 active:bg-red-900 transition ease-in-out duration-200"
                 )}

@@ -15,5 +15,10 @@ export type Props = {
 
 export interface TaskSectionProps extends Props {
   updateTaskList: (newTaskList: Task[]) => void;
+  deleteTaskInPlace: (taskId: string) => void;
+}
+
+export interface EndDayProps extends Props {
+  updateTaskList: (newTaskList: Task[]) => void;
   deleteTask: (taskId: string) => void;
 }

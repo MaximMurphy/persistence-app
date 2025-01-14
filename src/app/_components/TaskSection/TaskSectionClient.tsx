@@ -37,9 +37,6 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
   };
 
   const deleteTask = async (taskId: string) => {
-    const newTaskList = taskList.filter((t) => t.id !== taskId);
-    updateTaskList(newTaskList);
-
     try {
       const response = await fetch(`/api/tasks`, {
         method: "DELETE",
@@ -57,18 +54,24 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
     }
   };
 
+  const deleteTaskInPlace = (taskId: string) => {
+    const newTaskList = taskList.filter((t) => t.id !== taskId);
+    updateTaskList(newTaskList);
+    deleteTask(taskId);
+  };
+
   return (
     <div className="w-full h-full flex flex-col gap-4 lg:gap-2 mb-12 lg:mb-0">
       <div className="w-full h-full lg:h-96 flex flex-col lg:flex-row justify-center items-center border lg:border-2 border-browser rounded-md overflow-scroll">
         <PersistentSection
           taskList={taskList}
           updateTaskList={updateTaskList}
-          deleteTask={deleteTask}
+          deleteTaskInPlace={deleteTaskInPlace}
         />
         <DailySection
           taskList={taskList}
           updateTaskList={updateTaskList}
-          deleteTask={deleteTask}
+          deleteTaskInPlace={deleteTaskInPlace}
         />
       </div>
       <div className="flex flex-col lg:flex-row gap-2">

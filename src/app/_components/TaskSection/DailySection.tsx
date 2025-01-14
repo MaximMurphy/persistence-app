@@ -8,7 +8,7 @@ import TaskCard from "./TaskCard";
 export default function DailySection({
   taskList,
   updateTaskList,
-  deleteTask,
+  deleteTaskInPlace,
 }: TaskSectionProps) {
   const [tasks, setTasks] = useState(
     taskList.filter((task) => !task.isPersistent)
@@ -39,7 +39,7 @@ export default function DailySection({
             key={task.id}
             task={task}
             updateTask={(task, updates) => updateTask(task, updates)}
-            deleteTask={(task) => deleteTask(task.id)}
+            deleteTaskInPlace={(task) => deleteTaskInPlace(task.id)}
           />
         ))}
       </div>
