@@ -8,6 +8,7 @@ import TaskCard from "./TaskCard";
 export default function PersistentSection({
   taskList,
   updateTaskList,
+  deleteTask,
 }: TaskSectionProps) {
   const [tasks, setTasks] = useState(
     taskList.filter((task) => task.isPersistent)
@@ -27,27 +28,6 @@ export default function PersistentSection({
     updateTaskList(newTaskList);
   };
 
-  const deleteTask = async (task: Task) => {
-    const newTaskList = taskList.filter((t) => t.id !== task.id);
-    updateTaskList(newTaskList);
-
-    try {
-      const response = await fetch(`/api/tasks`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: task.id }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete task");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <div className="bg-background h-full w-full flex flex-col justify-start px-4 py-4 lg:py-2 gap-4 border-b lg:border-b-0 lg:border-r border-browser overflow-scroll no-scrollbar">
       <p className="underline">Persistent</p>
@@ -57,7 +37,7 @@ export default function PersistentSection({
             key={task.id}
             task={task}
             updateTask={(task, updates) => updateTask(task, updates)}
-            deleteTask={(task) => deleteTask(task)}
+            deleteTask={(task) => deleteTask(task.id)}
           />
         ))}
       </div>

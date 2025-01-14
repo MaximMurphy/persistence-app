@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Task, InitialTaskProps } from "@/types/types";
 import PersistentSection from "./PersistentSection";
 import DailySection from "./DailySection";
+import EndDay from "../Buttons/EndDay";
 
 export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
   const [taskList, setTaskList] = useState<Task[]>(initialTasks);
@@ -35,14 +36,40 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
     }
   };
 
+  const deleteTask = async (taskId: string) => {
+    const newTaskList = taskList.filter((t) => t.id !== taskId);
+    updateTaskList(newTaskList);
+
+    try {
+      const response = await fetch(`/api/tasks`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: taskId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete task");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="w-full h-full flex flex-col gap-4 lg:gap-2 mb-12 lg:mb-0">
       <div className="w-full h-full lg:h-96 flex flex-col lg:flex-row justify-center items-center border lg:border-2 border-browser rounded-md overflow-scroll">
         <PersistentSection
           taskList={taskList}
           updateTaskList={updateTaskList}
+          deleteTask={deleteTask}
         />
-        <DailySection taskList={taskList} updateTaskList={updateTaskList} />
+        <DailySection
+          taskList={taskList}
+          updateTaskList={updateTaskList}
+          deleteTask={deleteTask}
+        />
       </div>
       <div className="flex flex-col lg:flex-row gap-2">
         <div className="w-full lg:w-1/2 flex">
@@ -56,6 +83,11 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
           <NewTaskInput taskList={taskList} setTaskList={setTaskList} />
         </div>
       </div>
+      <EndDay
+        taskList={taskList}
+        updateTaskList={updateTaskList}
+        deleteTask={deleteTask}
+      />
     </div>
   );
 }
