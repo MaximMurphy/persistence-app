@@ -9,7 +9,7 @@ export default function EndDay({
   return (
     <button
       onClick={() => endDay(taskList, updateTaskList, deleteTask)}
-      className="w-12 p-2 bg-background brightness-90 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200"
+      className="w-fit p-2 bg-background brightness-90 text-cream/75 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200"
     >
       End Day
     </button>
