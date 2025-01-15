@@ -8,6 +8,8 @@ export default function CompletionGraph({
   year,
   existingCompletions,
 }: CompletionGraphProps) {
+  console.log(existingCompletions);
+
   // Calculate days in year
   const daysInYear: number[] =
     year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
@@ -16,15 +18,15 @@ export default function CompletionGraph({
 
   // Create dates array with completion data
   const dates = daysInYear.map((day) => {
-    const date = new Date(year, 0, day + 1);
+    const date = new Date(Date.UTC(year, 0, day + 1));
     const dayOfWeek = date.toLocaleString("default", { weekday: "long" });
-    const dayNumber = getOrdinalSuffix(date.getDate());
+    const dayNumber = getOrdinalSuffix(date.getUTCDate());
     const month = date.toLocaleString("default", { month: "long" });
 
-    // Find completion data for this date if it exists
     const completion = existingCompletions.find(
       (c) => new Date(c.date).toDateString() === date.toDateString()
     );
+
     const completionPercentage = completion
       ? completion.completionPercentage / 100
       : 0;

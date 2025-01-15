@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import MoonPhase from "@/app/_components/MoonPhase/MoonPhase";
 
-export default function DateDisplay({ year }: { year: number }) {
+export default function DateDisplay() {
   // prevent caching
   noStore();
 
@@ -16,7 +16,7 @@ export default function DateDisplay({ year }: { year: number }) {
       </div>
       <p>
         {date.toLocaleString("default", { month: "long" })}{" "}
-        {getOrdinalSuffix(date.getDate())}, {year}
+        {getOrdinalSuffix(date.getDate())}, {date.getFullYear()}
       </p>
     </div>
   );
