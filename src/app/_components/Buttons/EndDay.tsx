@@ -6,9 +6,23 @@ export default function EndDay({
   updateTaskList,
   deleteTask,
 }: EndDayProps) {
+  const endDay = async () => {
+    console.log("Day ended");
+
+    // Calculate completion percentage
+    const completionPercentage = calculateCompletionPercentage(taskList);
+    console.log("Completion percentage: ", completionPercentage);
+
+    // Send completion percentage to DB
+    await saveCompletionPercentage(completionPercentage);
+
+    // Reset for next day
+    recycleTasks(taskList, updateTaskList, deleteTask);
+  };
+
   return (
     <button
-      onClick={() => endDay(taskList, updateTaskList, deleteTask)}
+      onClick={endDay}
       className="w-fit p-2 bg-background brightness-90 text-cream/75 border border-browser rounded-md hover:outline-none hover:ring-2 hover:ring-accentBlue transition ease-in-out duration-200"
     >
       End Day
@@ -16,22 +30,28 @@ export default function EndDay({
   );
 }
 
-const endDay = (
-  taskList: Task[],
-  updateTaskList: (newTaskList: Task[]) => void,
-  deleteTask: (taskId: string) => void
-) => {
-  console.log("Day ended");
-  const completionPercentage = calculateCompletionPercentage(taskList);
-  console.log("Completion percentage: ", completionPercentage);
-  recycleTasks(taskList, updateTaskList, deleteTask);
-};
-
-// TODO: save completion percentage for day to DB.
 const calculateCompletionPercentage = (taskList: Task[]) => {
   const completedTasks = taskList.filter((task) => task.isComplete).length;
   const totalTasks = taskList.length;
   return totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
+};
+
+const saveCompletionPercentage = async (percentage: number) => {
+  try {
+    const response = await fetch("/api/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ completionPercentage: percentage }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to save completion percentage");
+    }
+  } catch (error) {
+    console.error("Failed to save completion:", error);
+  }
 };
 
 const recycleTasks = (

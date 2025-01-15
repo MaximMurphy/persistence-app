@@ -1,4 +1,4 @@
-import CompletionGraph from "@/app/_components/CompletionGraph/CompletionGraph";
+import CompletionGraphServer from "@/app/_components/CompletionGraph/CompletionGraphServer";
 import DateDisplay from "@/app/_components/DateDisplay/DateDisplay";
 import TaskSectionServer from "@/app/_components/TaskSection/TaskSectionServer";
 
@@ -19,7 +19,7 @@ export default async function Home() {
       <div className="w-full lg:w-fit h-full flex flex-col items-center justify-start gap-8">
         <div className="w-full lg:w-[60rem] flex flex-col gap-2">
           <DateDisplay year={year} />
-          <CompletionGraph year={year} />
+          <CompletionGraphServer />
           <TaskSectionServer />
         </div>
       </div>

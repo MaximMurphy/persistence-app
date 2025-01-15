@@ -22,3 +22,13 @@ export interface EndDayProps extends Props {
   updateTaskList: (newTaskList: Task[]) => void;
   deleteTask: (taskId: string) => void;
 }
+
+export interface DailyCompletion {
+  date: Date;
+  completionPercentage: number;
+}
+
+export interface CompletionGraphProps {
+  year: number;
+  existingCompletions: DailyCompletion[];
+}

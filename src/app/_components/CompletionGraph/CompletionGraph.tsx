@@ -1,18 +1,33 @@
+"use client";
+
 import clsx from "clsx";
 import { getOrdinalSuffix } from "@/app/_components/DateDisplay/DateDisplay";
+import { CompletionGraphProps } from "@/types/types";
 
-export default function CompletionGraph({ year }: { year: number }) {
+export default function CompletionGraph({
+  year,
+  existingCompletions,
+}: CompletionGraphProps) {
+  // Calculate days in year
   const daysInYear: number[] =
     year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
       ? Array.from({ length: 366 }, (_, i) => i)
       : Array.from({ length: 365 }, (_, i) => i);
 
+  // Create dates array with completion data
   const dates = daysInYear.map((day) => {
     const date = new Date(year, 0, day + 1);
     const dayOfWeek = date.toLocaleString("default", { weekday: "long" });
     const dayNumber = getOrdinalSuffix(date.getDate());
     const month = date.toLocaleString("default", { month: "long" });
-    const completionPercentage = Math.random();
+
+    // Find completion data for this date if it exists
+    const completion = existingCompletions.find(
+      (c) => new Date(c.date).toDateString() === date.toDateString()
+    );
+    const completionPercentage = completion
+      ? completion.completionPercentage / 100
+      : 0;
 
     return {
       dayOfWeek,
