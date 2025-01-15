@@ -31,7 +31,9 @@ export default function CompletionGraph({ year }: { year: number }) {
             key={day}
             className={clsx(
               "w-[12px] h-2 hover:scale-150 hover:border hover:border-cream rounded-sm",
-              dates[index].completionPercentage <= 0.1
+              dates[index].completionPercentage == 0
+                ? "bg-browser"
+                : dates[index].completionPercentage <= 0.1
                 ? "bg-accentPurple/10"
                 : dates[index].completionPercentage <= 0.2
                 ? "bg-accentPurple/20"

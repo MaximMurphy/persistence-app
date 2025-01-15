@@ -54,6 +54,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   tasks         Task[]
+  completions   DailyCompletion[]
 }
 
 model VerificationToken {
@@ -73,4 +74,14 @@ model Task {
   isPersistent Boolean
   userId       String
   user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model DailyCompletion {
+  id                  String   @id @default(cuid())
+  date               DateTime @db.Date
+  completionPercentage Float
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
 }
