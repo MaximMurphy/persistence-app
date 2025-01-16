@@ -14,4 +14,3 @@ Features:
 - Add new Daily tasks for your standard To-Do List. Any tasks in the Daily Section will remain until completion. (For example: "Go to Grocery Store")
 - Tasks can be moved to the Persistent Section by pressing the ✧ button. Persistent Tasks will repeat every day. (For example: "Spend 15 minutes playing Piano")
 - At the end of each day, the total completion percentage of all of your tasks will be collected and added to the Completion Chart. This chart is inspired by GitHub's Contribution Activity Chart. So in the case for Persistence, brighter purple === higher completion percentage. Each purple square represents a day in the year which can be shown on the tooltip when hovering.
-- Social Page to view the Completion Charts of other accounts.

@@ -3,7 +3,7 @@ import DateDisplay from "@/app/_components/DateDisplay/DateDisplay";
 import TaskSectionServer from "@/app/_components/TaskSection/TaskSectionServer";
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
