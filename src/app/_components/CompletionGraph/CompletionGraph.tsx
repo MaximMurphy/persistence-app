@@ -50,24 +50,14 @@ export default function CompletionGraph({
               "w-[12px] h-2 hover:scale-150 hover:border hover:border-cream rounded-sm",
               dates[index].completionPercentage == 0
                 ? "bg-[#0d131c]"
-                : dates[index].completionPercentage <= 0.1
-                ? "bg-accentPurple/10"
-                : dates[index].completionPercentage <= 0.2
+                : dates[index].completionPercentage <= 0.25
                 ? "bg-accentPurple/20"
-                : dates[index].completionPercentage <= 0.3
-                ? "bg-accentPurple/30"
-                : dates[index].completionPercentage <= 0.4
-                ? "bg-accentPurple/40"
                 : dates[index].completionPercentage <= 0.5
-                ? "bg-accentPurple/50"
-                : dates[index].completionPercentage <= 0.6
+                ? "bg-accentPurple/40"
+                : dates[index].completionPercentage <= 0.75
                 ? "bg-accentPurple/60"
-                : dates[index].completionPercentage <= 0.7
-                ? "bg-accentPurple/70"
-                : dates[index].completionPercentage <= 0.8
+                : dates[index].completionPercentage < 1
                 ? "bg-accentPurple/80"
-                : dates[index].completionPercentage <= 0.9
-                ? "bg-accentPurple/90"
                 : "bg-accentPurple/100"
             )}
             title={`${dates[index].month} ${dates[index].dayNumber}, ${
