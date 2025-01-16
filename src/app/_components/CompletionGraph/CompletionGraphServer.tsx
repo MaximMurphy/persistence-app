@@ -28,7 +28,7 @@ export default async function CompletionGraphServer() {
       })
     : [];
 
-  console.log(completions);
+  //console.log(completions);
 
   return <CompletionGraph year={year} existingCompletions={completions} />;
 }
