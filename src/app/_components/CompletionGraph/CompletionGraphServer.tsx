@@ -1,7 +1,7 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/app/lib/prisma";
 import { getServerSession } from "next-auth";
 import CompletionGraph from "./CompletionGraph";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/app/lib/auth";
 
 export default async function CompletionGraphServer() {
   const session = await getServerSession(authOptions);

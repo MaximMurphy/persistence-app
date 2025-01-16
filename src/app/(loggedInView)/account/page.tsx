@@ -2,7 +2,7 @@ import { SignOut } from "@/app/_components/Buttons/SignOut";
 import UserInfo from "@/app/_components/UserInfo/UserInfo";
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/app/lib/auth";
 import { redirect } from "next/navigation";
 
 export default async function Account() {
