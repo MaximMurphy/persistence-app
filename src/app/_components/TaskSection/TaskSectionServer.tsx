@@ -1,8 +1,8 @@
-import { prisma } from "@/app/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import TaskSectionClient from "./TaskSectionClient";
 import type { Task } from "@/types/types";
-import { authOptions } from "@/app/lib/auth";
+import { authOptions } from "@/lib/auth";
 
 // Fetch data in RSC and then pass as props to client component to store in state and display
 export default async function TaskSectionServer() {
