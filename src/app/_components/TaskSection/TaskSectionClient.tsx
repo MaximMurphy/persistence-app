@@ -4,7 +4,6 @@ import { useState } from "react";
 import type { Task, InitialTaskProps } from "@/types/types";
 import PersistentSection from "./PersistentSection";
 import DailySection from "./DailySection";
-import EndDay from "../Buttons/EndDay";
 
 export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
   const [taskList, setTaskList] = useState<Task[]>(initialTasks);
@@ -86,11 +85,6 @@ export default function TaskSectionClient({ initialTasks }: InitialTaskProps) {
           <NewTaskInput taskList={taskList} setTaskList={setTaskList} />
         </div>
       </div>
-      <EndDay
-        taskList={taskList}
-        updateTaskList={updateTaskList}
-        deleteTask={deleteTask}
-      />
     </div>
   );
 }

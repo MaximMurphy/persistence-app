@@ -49,7 +49,7 @@ export default function CompletionGraph({
             className={clsx(
               "w-[12px] h-2 hover:scale-150 hover:border hover:border-cream rounded-sm",
               dates[index].completionPercentage == 0
-                ? "bg-browser"
+                ? "bg-[#0d131c]"
                 : dates[index].completionPercentage <= 0.1
                 ? "bg-accentPurple/10"
                 : dates[index].completionPercentage <= 0.2
