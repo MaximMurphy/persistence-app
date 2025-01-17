@@ -1,4 +1,3 @@
-// src/app/api/end-day/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
@@ -17,8 +16,9 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: "No users found" }, { status: 404 });
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    // Simply subtract one day's worth of milliseconds from current date
+    const yesterday = new Date(Date.now() - 86400000);
+    yesterday.setHours(0, 0, 0, 0);
 
     // Process each user's tasks
     const results = await Promise.all(
@@ -34,12 +34,12 @@ export async function GET(req: NextRequest) {
         const completionPercentage =
           totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
 
-        // Save completion percentage
+        // Save completion percentage for yesterday
         await prisma.dailyCompletion.upsert({
           where: {
             userId_date: {
               userId: user.id,
-              date: today,
+              date: yesterday,
             },
           },
           update: {
@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
           },
           create: {
             userId: user.id,
-            date: today,
+            date: yesterday,
             completionPercentage,
           },
         });
