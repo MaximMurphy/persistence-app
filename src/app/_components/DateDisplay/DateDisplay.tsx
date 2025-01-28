@@ -5,8 +5,10 @@ export default function DateDisplay() {
   // prevent caching
   noStore();
 
-  // Get current date
-  const date = new Date();
+  // Get current date in EST
+  const date = new Date(
+    Date.now() - new Date().getTimezoneOffset() * 60 * 1000
+  );
 
   return (
     <div className="w-full flex text-lg lg:text-2xl justify-between">
