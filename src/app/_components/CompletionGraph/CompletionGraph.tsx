@@ -8,7 +8,7 @@ export default function CompletionGraph({
   year,
   existingCompletions,
 }: CompletionGraphProps) {
-  console.log(existingCompletions);
+  //console.log(existingCompletions);
 
   // Calculate days in year
   const daysInYear: number[] =
@@ -19,9 +19,19 @@ export default function CompletionGraph({
   // Create dates array with completion data
   const dates = daysInYear.map((day) => {
     const date = new Date(Date.UTC(year, 0, day + 1));
-    const dayOfWeek = date.toLocaleString("default", { weekday: "long" });
+    const dayOfWeek = new Intl.DateTimeFormat("default", {
+      weekday: "long",
+      timeZone: "UTC",
+    }).format(date);
     const dayNumber = getOrdinalSuffix(date.getUTCDate());
-    const month = date.toLocaleString("default", { month: "long" });
+    const month = new Intl.DateTimeFormat("default", {
+      month: "long",
+      timeZone: "UTC",
+    }).format(date);
+
+    console.log(
+      `Date: ${date.toISOString()}, Day: ${dayNumber}, Month: ${month}`
+    );
 
     const completion = existingCompletions.find(
       (c) => new Date(c.date).toDateString() === date.toDateString()
